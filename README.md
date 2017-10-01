@@ -27,4 +27,10 @@ Python 2.7.5
    adduser ansible
    passwd ansible  # Enter and confirm password
    ```
-
+   Now on your ansible control node, or server/box we want to setup a ssh key, because we don't want to have to use passwords when running our ansible-playbook.  
+   On the machine on which you will be running the ansible-playbook
+    1. Lets Create a ssh-key, if you already have one skip to next step
+    ```
+    ssh-keygen # Just press enter.., or 
+    ```
+    2. Add the ssh-key to the target linux host
