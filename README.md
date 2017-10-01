@@ -17,3 +17,14 @@ Python 2.7.5
   * ansible
   * python 2.7.*
 
+### Setup
+  * Setup ssh keys and users on target linux hosts.
+
+   On the target linux hosts lets create a user called `ansible`  
+   Assuming you have a root user.
+   ```
+   ssh root@<linux-host>
+   adduser ansible
+   passwd ansible  # Enter and confirm password
+   ```
+
