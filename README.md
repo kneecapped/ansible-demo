@@ -31,9 +31,34 @@ Python 2.7.5
    Now on your ansible control node, or server/box we want to setup a ssh key, because we don't want to have to use passwords when running our ansible-playbook.  
    On the machine on which you will be running the ansible-playbook
 
-    1. Lets Create a ssh-key, if you already have one skip to next step
+  * Lets Create a ssh-key, if you already have one skip to next step
 
     ```
-    ssh-keygen # Just press enter.., or 
+        [root@centos ansible]# ssh-keygen
+        Generating public/private rsa key pair.
+        Enter file in which to save the key (/root/.ssh/id_rsa): 
+        Created directory '/root/.ssh'.
+        Enter passphrase (empty for no passphrase): 
+        Enter same passphrase again: 
+        Your identification has been saved in /root/.ssh/id_rsa.
+        Your public key has been saved in /root/.ssh/id_rsa.pub.
+        The key fingerprint is:
+        SHA256:1FJp6a4p78fgoS5stKAnrH9afzJfp3fnmLE9TFOsxf4 root@centos
+        The key's randomart image is:
+        +---[RSA 2048]----+
+        |          .o     |
+        |         o+      |
+        |        oo.    o |
+        |       . ..     =|
+        |        S.     +.|
+        |  . .   o .   .o.|
+        |.. +.. o *. . + o|
+        |o...*.= =.oo. .OE|
+        |o+o+ ooO+... .+o+|
+        +----[SHA256]-----+
+
     ```
-    2. Add the ssh-key to the target linux host
+  * Add the ssh-key to the target linux host, from the ansible control host
+  ```
+  ssh-copy-id ansible@<linux-host>
+  ```
