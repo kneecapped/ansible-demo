@@ -1,5 +1,22 @@
 ---
 - hosts: linux
+  become: yes
+  become_method: sudo
   tasks:
     - name: Checks Connection
       ping:
+    - name: Removes user {{ remove_user }}
+      user:
+        name: "{{ remove_user }}"
+        state: absent
+        remove: yes
+    - name: Adds user {{ add_user }}
+      user:
+        name: "{{ add_user }}"
+        groups: wheel
+        append: yes
+    - name: Add authorized key to {{ add_user }}
+      authorized_key:
+        user: "{{ add_user }}"
+        state: present
+        key: "{{ lookup('file','{{ ssh_key_path}}') }}"

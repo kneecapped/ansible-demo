@@ -89,3 +89,51 @@ Python 2.7.5
   PLAY RECAP **************************************************************************
   192.168.1.90               : ok=2    changed=0    unreachable=0    failed=0 
   ```
+
+  * Set vars in group_vars/linux.yml
+
+  ```
+  ---
+  ansible_ssh_user: ansible
+  remove_user: john
+  add_user: emily
+  ssh_key_path : /home/ansible/.ssh/id_rsa.pub
+  ```
+
+  Verify the above are correct
+
+  run the playbook
+
+  ```
+  ansible-playbook -i hosts.yml demo-playbook.yml
+
+  Output:
+  
+  [ansible@centos ansible-demo]$ ansible-playbook -i hosts.yml demo-playbook.yml
+
+  PLAY [linux] ******************************************************************************
+
+  TASK [Gathering Facts] ********************************************************************
+  ok: [192.168.1.90]
+
+  TASK [Checks Connection] ******************************************************************
+  ok: [192.168.1.90]
+
+  TASK [Removes user john] ******************************************************************
+  ok: [192.168.1.90]
+
+  TASK [Adds user emily] ********************************************************************
+  changed: [192.168.1.90]
+
+  TASK [Add authorized key to emily] ********************************************************
+  changed: [192.168.1.90]
+
+  PLAY RECAP ********************************************************************************
+  192.168.1.90               : ok=5    changed=2    unreachable=0    failed=0   
+
+  [ansible@centos ansible-demo]$ ssh emily@192.168.1.90
+  [emily@centos ~]$ sudo ls
+  [emily@centos ~]$ sudo pwd
+  /home/emily
+  ```
+
