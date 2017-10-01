@@ -28,6 +28,21 @@ Python 2.7.5
    passwd ansible  # Enter and confirm password
    ```
 
+   Add ansible to the wheel group for centos, or sudo group for ubuntu
+   ```
+   usermod -aG wheel ansible # for centos
+   usermod -aG sudo ansible # for ubuntu
+   ```
+   Add ansible to have passwordless sudo
+   ```
+   echo "%wheel         ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
+   ```
+   or for ubuntu
+   ```
+   echo "ansible         ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
+   ```
+
+
    Now on your ansible control node, or server/box we want to setup a ssh key, because we don't want to have to use passwords when running our ansible-playbook.  
    On the machine on which you will be running the ansible-playbook
 
@@ -108,7 +123,7 @@ Python 2.7.5
   ansible-playbook -i hosts.yml demo-playbook.yml
 
   Output:
-  
+
   [ansible@centos ansible-demo]$ ansible-playbook -i hosts.yml demo-playbook.yml
 
   PLAY [linux] ******************************************************************************
