@@ -62,3 +62,13 @@ Python 2.7.5
   ```
   ssh-copy-id ansible@<linux-host>
   ```
+
+  * Setup hosts.yml
+
+  In the hosts.yml there will be an IP under the linux hosts, replace that with the linux-host that we added the ansible user too as well as loaded the ssh-key onto.
+  ```
+    ---
+    linux:
+    hosts:
+      192.168.1.90
+  ```
