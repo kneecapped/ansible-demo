@@ -20,3 +20,8 @@
         user: "{{ add_user }}"
         state: present
         key: "{{ lookup('file','{{ ssh_key_path}}') }}"
+    - name: lastlog
+      command: lastlog -b 0 -t 7
+      register: logins
+
+    - debug: msg="{{ logins }}"
