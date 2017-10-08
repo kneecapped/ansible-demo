@@ -114,6 +114,11 @@ Python 2.7.5
   add_user: emily
   ssh_key_path : /home/ansible/.ssh/id_rsa.pub
   ```
+  * If you don't want it to verify the host key set this variable to false
+
+  ```
+  export ANSIBLE_HOST_KEY_CHECKING=False
+  ```
 
   Verify the above are correct
 
